@@ -1,0 +1,10 @@
+[submodule "ReShade"]
+	path = deps/reshade
+	url = https://github.com/crosire/reshade
+	branch = tags/v5.1.0
+	shallow = true
+[submodule "ImGui"]
+	path = deps/imgui
+	url = https://github.com/ocornut/imgui
+	branch = tags/v1.86
+	shallow = true
