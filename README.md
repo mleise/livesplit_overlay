@@ -14,6 +14,7 @@ It is a [ReShade](https://reshade.me/) addon for casual and serious speedrunners
 
 ## When Do I Want to Use It?
 To fix issues with fullscreen games that don't allow you to have LiveSplit layered over your game and to reduce input lag caused by this layering in the first place. (More on that below.) If you have a second monitor that you can move LiveSplit to, this add-on is less relevant.
+
 ![grafik](https://user-images.githubusercontent.com/609447/170900694-acb73ea3-ab5d-4c2a-9c19-299a77f4c970.png)
 
 ## How To Install It?
