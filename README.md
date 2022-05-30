@@ -2,7 +2,7 @@
 It is a [ReShade](https://reshade.me/) addon for casual and serious speedrunners, that enables you to display the [LiveSplit](https://livesplit.org/) timer as an overlay inside the game itself.
 
 - [When Do I Want to Use It?](#when-do-i-want-to-use-it)
-- [How Do I Install It?](#how-do-i-install-it)
+- [How To Install It?](#how-to-install-it)
 - [A Note on Fullscreen Modes](#a-note-on-fullscreen-modes)
 - [Why use fullscreen over borderless window mode?](#why-use-fullscreen-over-borderless-window-mode)
   * [🐌Lower Input lag](#lower-input-lag)
@@ -13,14 +13,19 @@ It is a [ReShade](https://reshade.me/) addon for casual and serious speedrunners
 - [Measuring Presentation Latency](#measuring-presentation-latency)
 
 ## When Do I Want to Use It?
-To fix issues with fullscreen games that don't allow you to have LiveSplit layered over your game and to reduce input lag caused by this layering in the first place. (More on that below.) If you have a second monitor that you can move LiveSplit to, this add-on is not relevant.
+To fix issues with fullscreen games that don't allow you to have LiveSplit layered over your game and to reduce input lag caused by this layering in the first place. (More on that below.) If you have a second monitor that you can move LiveSplit to, this add-on is less relevant.
+![grafik](https://user-images.githubusercontent.com/609447/170900694-acb73ea3-ab5d-4c2a-9c19-299a77f4c970.png)
 
-## How Do I Install It?
-Simply download the latest release on the right and depending on whether the game in question is 32-bit or 64-bit, drop either the `livesplit_overlay_x86.addon` or the `livesplit_overlay_x64.addon` into your game's binary directory next to ReShade 5.1.x. If you are unsure, just drop both files in there and ReShade will figure it out.
+## How To Install It?
+You need ReShade 5.1 or higher ⚠️ _**with full add-on support**_ ⚠️ from the [Releases section of ReShade's forum](https://reshade.me/releases). This version will warn you that it is intended for singleplayer games only. Once you have installed it for your game, simply download the latest release of this add-on using the link to the right and depending on whether the game in question is 32-bit or 64-bit, drop either the `livesplit_overlay_x86.addon` or the `livesplit_overlay_x64.addon` into your game's binary directory. If you are unsure, just drop both files in there and ReShade will figure it out.
 
 It is important to keep the LiveSplit window visible and not minimized. If you see borders around the overlay, go to ReShade's settings and enable at least one of the clock, FPS or frametime options.
 
+![grafik](https://user-images.githubusercontent.com/609447/170900848-dd6b1e3a-4725-4fc6-98d2-e8fa6ec7a4ef.png)
+
 In ReShade's Add-on tab you can disable the add-on fully or simply hide it. Both options free all used graphics resources and reduce the impact on the game to zero.
+
+![grafik](https://user-images.githubusercontent.com/609447/170901162-addf296c-1ff3-4e8f-97a2-4bec70e8f812.png)
 
 ## A Note on Fullscreen Modes
 Today there are many ways to present a game on screen that can be called "fullscreen". It has become more common now _not_ to use _exclusive_ fullscreen mode, but instead use something called "Windowed with Independent Flip", which gives us all the features of Exclusive Fullscreen Mode, paired with the ability to quickly tab between windows without the screen going blank for seconds. The various modes are explained by a Microsoft developer in this video: [DirectX 12: Presentation Modes In Windows 10](https://www.youtube.com/watch?v=E3wTajGZOsA)
