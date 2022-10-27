@@ -3,7 +3,7 @@
 // Verwendet durch resource.rc
 //
 #define ADDON_MAJOR                     1
-#define ADDON_MINOR                     0
+#define ADDON_MINOR                     1
 #define ADDON_BUILD                     0
 #define ADDON_REVISION                  0
 #define ADDON_YEAR                      2022
