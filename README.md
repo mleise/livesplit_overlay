@@ -1,5 +1,6 @@
 ## What Is the LiveSplit Overlay for Reshade?
-It is a [ReShade](https://reshade.me/) addon for casual and serious speedrunners, that enables you to display the [LiveSplit](https://livesplit.org/) timer as an overlay inside the game itself.
+
+It is a [ReShade](https://reshade.me/) add-on for casual and serious speedrunners, that enables you to display the [LiveSplit](https://livesplit.org/) timer as an overlay inside the game itself.
 
 - [When Do I Want to Use It?](#when-do-i-want-to-use-it)
 - [How To Install It?](#how-to-install-it)
@@ -13,39 +14,45 @@ It is a [ReShade](https://reshade.me/) addon for casual and serious speedrunners
 - [Measuring Presentation Latency](#measuring-presentation-latency)
 
 ## When Do I Want to Use It?
+
 To fix issues with fullscreen games that don't allow you to have LiveSplit layered over your game and to reduce input lag caused by this layering in the first place. (More on that below.) If you have a second monitor that you can move LiveSplit to, this add-on is less relevant.
 
 ![grafik](https://user-images.githubusercontent.com/609447/170900694-acb73ea3-ab5d-4c2a-9c19-299a77f4c970.png)
 
 ## How To Install It?
-You need ReShade 5.1 or higher ⚠️ _**with full add-on support**_ ⚠️ from the [Releases section of ReShade's forum](https://reshade.me/releases). This version will warn you that it is intended for singleplayer games only. Once you have installed it for your game, simply download the latest release of this add-on using the link to the right and depending on whether the game in question is 32-bit or 64-bit, drop either the `livesplit_overlay_x86.addon` or the `livesplit_overlay_x64.addon` into your game's binary directory. If you are unsure, just drop both files in there and ReShade will figure it out.
 
-It is important to keep the LiveSplit window visible and not minimized. If you see borders around the overlay, go to ReShade's settings and enable at least one of the clock, FPS or frametime options.
+Download ReShade ⚠️ _**with full add-on support**_ ⚠️ from its [Download section](https://reshade.me/#download). It will warn you that it is intended for single-player games only. During installation you will be asked to "Select add-ons to install". Look for the "LiveSplit Overlay" in the list. When you launch your game now, the LiveSplit window should be rendered into the top-left corner.
 
-![grafik](https://user-images.githubusercontent.com/609447/170900848-dd6b1e3a-4725-4fc6-98d2-e8fa6ec7a4ef.png)
+You can also manually load the latest version of the add-on from the "Releases" panel to the right of this page. Just extract `livesplit_overlay.addon32` (for 32-bit games) and `livesplit_overlay.addon64` (for 64-bit games) to where the game's executable resides.
 
-In ReShade's Add-on tab you can disable the add-on fully or simply hide it. Both options free all used graphics resources and reduce the impact on the game to zero.
+In ReShade's "Add-ons" tab you can disable the add-on (so ReShade wont load it next time) or untick "Show LiveSplit" to hide it. Both options free all used graphics resources and reduce the impact on the game to zero.  The alignment option moves LiveSplit from left to right and top to bottom. `0` is left/top, `1` is right/bottom and `0.5` would be centered. The offset option keeps LiveSplit away from each border by the set amount of pixels.
 
-![grafik](https://user-images.githubusercontent.com/609447/170901162-addf296c-1ff3-4e8f-97a2-4bec70e8f812.png)
+
 
 ## A Note on Fullscreen Modes
+
 Today there are many ways to present a game on screen that can be called "fullscreen". It has become more common now _not_ to use _exclusive_ fullscreen mode, but instead use something called "Windowed with Independent Flip", which gives us all the features of Exclusive Fullscreen Mode, paired with the ability to quickly tab between windows without the screen going blank for seconds. The various modes are explained by a Microsoft developer in this video: [DirectX 12: Presentation Modes In Windows 10](https://www.youtube.com/watch?v=E3wTajGZOsA)
 
 ## Why use fullscreen over borderless window mode?
 
 ### 🐌Lower Input lag
+
 In general, when you play a game that is not fully covering the screen space or is overlapped by another window (in this case LiveSplit), you add 1 frame of input lag to your game experience. More accurately input lag increases by the reciprocal of your desktop refresh rate, which means 17 ms for 60 Hz and 7 ms for 144 Hz. This has to do with how the Desktop Window Manager (DWM) operates. A deep dive into the topic can be found here: [Present Latency, DWM and Waitable Swapchains](https://jackmin.home.blog/2018/12/14/swapchains-present-and-present-latency/)
 
 ### ⛷️Variable Refresh Rate
+
 Variable refresh rates (GSYNC/FreeSync/Adaptive Sync) make it possible to synchronize your GPU with the monitor resulting in a smooth experience at high FPS and with low input lag while avoiding the screen tearing that previously came with turning VSYNC off. Variable refresh rate does not work with a borderless window that is overlapped by another.
 
 ### ☀️Power Savings
+
 Typically you'll want to turn VSYNC off in-game with borderless window mode. This will not result in screen tearing, because the DWM is in control of the final image. At the same time the game can read your inputs at the fastest rate possible, which allows for the most consistent gameplay. On the downside, the DWM will go with the last frame that finished rendering at the last screen refresh. If you happen to have FPS 4 times higher than your monitor refresh rate, 75% of the frames are rendered but never displayed. Especially during the summer months, the extra power draw can quickly heat up your room and you could save quite a few kWh on your energy bill rendering only 1 frame per screen refresh!
 
 ### 💫Reduce Micro Stuttering
+
 By extension of the above, if your frame rate is not several times higher than your monitor refresh rate, the frame pacing will be horrible. Imagine a situation where you have a 60 Hz monitor and 100 fps. If we write a 0 for every discarded frame and a one for every presented frame, it would look like this: 0101101011. The frames were rendered at a smooth 10 ms interval, but we are discarding 4 of them, so the 6 remaining frames represent 20, 20, 10, 20, 20, 10 milliseconds and are output to the monitor at a steady 16.6 ms pace. To the user this gives the appearance of the game intermittedly speeding up and slowing down or micro stuttering.
 
 ## Optimizing for Low Presentation Latency
+
 This section is aimed users of monitors without variable refresh rate that want to get the most out of it. After reading all of the above, it might sound like once in fullscreen mode, you just turn on VSYNC and you get the best experience. Not quite! Older games are often done rendering within a few milliseconds and spend most time waiting on VSYNC to present the frame. During that time the game cannot react to your input.
 
 Here is an example assuming 16 ms frame times: The game has rendered a frame which took 4 ms. Now it is waiting for the remaining 12 ms on VSYNC to present the frame. 10 ms into the frame you click your mouse to fire a gun, but the game is already done with the frame and can no longer process your input. The shot will have to wait to the next frame and we'll see it's effect after 22 ms.
@@ -61,6 +68,7 @@ For that you can use RivaTuner Statistics Server (RTSS), which typically comes b
 An in depth article that has more details and options can be found here: [How to use RTSS's Scanline Sync](https://www.resetera.com/threads/guide-how-to-use-rtsss-scanline-sync-to-reduce-stuttering-screen-tearing-and-input-lag-on-pc-alternative-to-vsync-g-sync-and-freesync.138764/)
 
 ## Measuring Presentation Latency
+
 With all that said you might wonder how you can personally verify that you are indeed improving your Presentation Latency and what I mean by that is the time it takes from the game telling the 3D API that it has sent all commands for the frame to the GPU to the time the rendered image is delivered to the screen.
 
 For this there are several tools and I just used [PresentMon](https://github.com/GameTechDev/PresentMon) directly, but the web site also lists a couple tools that come with a graphical UI.

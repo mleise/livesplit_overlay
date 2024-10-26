@@ -18,19 +18,18 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  
   <PropertyGroup Label="Globals">
     <ProjectGuid>{E7011532-1895-4374-8358-905428CFA54B}</ProjectGuid>
     <ProjectName>livesplit_overlay</ProjectName>
     <RootNamespace>livesplit_overlay</RootNamespace>
-    <VCProjectVersion>16.0</VCProjectVersion>
+    <VCProjectVersion>17.0</VCProjectVersion>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <Keyword>Win32Proj</Keyword>
-    <DCompiler>None</DCompiler>
-    <IncludePath>$(ProjectDir)deps\reshade\include;$(ProjectDir)deps\imgui;$(IncludePath)</IncludePath>
-    <OutDir>$(SolutionDir)output\</OutDir>
+    <IncludePath>$(ProjectDir)..\deps\reshade\include;$(ProjectDir)..\deps\imgui;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IntDir>$(ProjectDir)obj\$(Configuration)-$(Platform)\</IntDir>
+    <OutDir>$(ProjectDir)output\$(Platform)\</OutDir>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)'=='Debug'">
@@ -45,15 +44,15 @@
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <PropertyGroup>
-    <IntDir>$(SolutionDir)obj\$(Configuration)-$(PlatformShortName)\</IntDir>
-    <TargetName>$(ProjectName)_$(PlatformShortName)</TargetName>
-    <TargetExt>.addon</TargetExt>
+  <PropertyGroup Condition="'$(Platform)'=='Win32'">
+    <TargetExt>.addon32</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Platform)'=='x64'">
+    <TargetExt>.addon64</TargetExt>
   </PropertyGroup>
   <ImportGroup Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  
   <ItemDefinitionGroup>
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
@@ -68,11 +67,10 @@
       <EnableUAC>false</EnableUAC>
     </Link>
     <ResourceCompile>
-      <Culture>0x0409</Culture>
+      <Culture>0x007f</Culture>
       <PreprocessorDefinitions>TARGET_NAME=\"$(TargetName)\";TARGET_FILE_NAME=\"$(TargetFileName)\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
   </ItemDefinitionGroup>
-
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -89,49 +87,74 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PreprocessorDefinitions>WIN32;_DEBUG;LIVESPLITOVERLAY_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <Link>
+      <ImportLibrary />
+      <LargeAddressAware>true</LargeAddressAware>
+      <AdditionalOptions>/NOIMPLIB /NOEXP %(AdditionalOptions)</AdditionalOptions>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <PreprocessorDefinitions>WIN32;NDEBUG;LIVESPLITOVERLAY_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <Link>
+      <ImportLibrary />
+      <LargeAddressAware>true</LargeAddressAware>
+      <AdditionalOptions>/NOIMPLIB /NOEXP %(AdditionalOptions)</AdditionalOptions>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PreprocessorDefinitions>_DEBUG;LIVESPLITOVERLAY_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <Link>
+      <ImportLibrary />
+      <LargeAddressAware>true</LargeAddressAware>
+      <AdditionalOptions>/NOIMPLIB /NOEXP %(AdditionalOptions)</AdditionalOptions>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PreprocessorDefinitions>NDEBUG;LIVESPLITOVERLAY_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <Link>
+      <ImportLibrary />
+      <LargeAddressAware>true</LargeAddressAware>
+      <AdditionalOptions>/NOIMPLIB /NOEXP %(AdditionalOptions)</AdditionalOptions>
+    </Link>
   </ItemDefinitionGroup>
-  
   <ItemGroup>
-    <ClInclude Include="deps\imgui\imgui.h" />
-    <ClInclude Include="deps\reshade\include\reshade.hpp" />
-    <ClInclude Include="deps\reshade\include\reshade_api.hpp" />
-    <ClInclude Include="deps\reshade\include\reshade_api_device.hpp" />
-    <ClInclude Include="deps\reshade\include\reshade_api_format.hpp" />
-    <ClInclude Include="deps\reshade\include\reshade_api_pipeline.hpp" />
-    <ClInclude Include="deps\reshade\include\reshade_api_resource.hpp" />
-    <ClInclude Include="deps\reshade\include\reshade_events.hpp" />
-    <ClInclude Include="deps\reshade\include\reshade_overlay.hpp" />
+    <ClInclude Include="..\deps\imgui\imgui.h" />
+    <ClInclude Include="..\deps\reshade\include\reshade.hpp" />
+    <ClInclude Include="..\deps\reshade\include\reshade_api.hpp" />
+    <ClInclude Include="..\deps\reshade\include\reshade_api_device.hpp" />
+    <ClInclude Include="..\deps\reshade\include\reshade_api_format.hpp" />
+    <ClInclude Include="..\deps\reshade\include\reshade_api_pipeline.hpp" />
+    <ClInclude Include="..\deps\reshade\include\reshade_api_resource.hpp" />
+    <ClInclude Include="..\deps\reshade\include\reshade_events.hpp" />
+    <ClInclude Include="..\deps\reshade\include\reshade_overlay.hpp" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="version.h" />
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="version.rc" />
+  </ItemGroup>
+  <ItemGroup>
     <Text Include="LICENSE.txt">
       <DeploymentContent>true</DeploymentContent>
     </Text>
-    <ResourceCompile Include="resource.rc" />
-    <None Include="version.rc2" />
+    <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
 </Project>
