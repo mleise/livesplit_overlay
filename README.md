@@ -23,7 +23,7 @@ To fix issues with fullscreen games that don't allow you to have LiveSplit layer
 
 Download ReShade ⚠️ _**with full add-on support**_ ⚠️ from its [Download section](https://reshade.me/#download). It will warn you that it is intended for single-player games only. During installation you will be asked to "Select add-ons to install". Look for the "LiveSplit Overlay" in the list. When you launch your game now, the LiveSplit window should be rendered into the top-left corner.
 
-You can also manually load the latest version of the add-on from the "Releases" panel to the right of this page. Just extract `livesplit_overlay.addon32` (for 32-bit games) and `livesplit_overlay.addon64` (for 64-bit games) to where the game's executable resides.
+You can also manually load the latest version of the add-on from the "Releases" panel to the right of this page. Just download `livesplit_overlay.addon32` (for 32-bit games) and `livesplit_overlay.addon64` (for 64-bit games) to where the game's executable resides. (Download both if you are unsure.)
 
 In ReShade's "Add-ons" tab you can disable the add-on (so ReShade wont load it next time) or untick "Show LiveSplit" to hide it. Both options free all used graphics resources and reduce the impact on the game to zero.  The alignment option moves LiveSplit from left to right and top to bottom. `0` is left/top, `1` is right/bottom and `0.5` would be centered. The offset option keeps LiveSplit away from each border by the set amount of pixels.
 
