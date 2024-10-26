@@ -1,59 +1,73 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Resources">
-      <UniqueIdentifier>{907cf9ab-1a8a-4324-bbe5-149697c9ab3b}</UniqueIdentifier>
-      <Extensions>rc;rc2</Extensions>
-    </Filter>
-    <Filter Include="Headers">
+    <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{907cf9ab-1a8a-4324-bbe5-149697c9ab3b}</UniqueIdentifier>
+      <Extensions>rc;rc2</Extensions>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{8a227835-f066-4849-9d8d-a0a54579028a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <Text Include="LICENSE.txt" />
     <ClInclude Include="pch.h">
-      <Filter>Headers</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClCompile Include="pch.cpp">
-      <Filter>Headers</Filter>
-    </ClCompile>
-    <ClInclude Include="deps\imgui\imgui.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="deps\reshade\include\reshade.hpp">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="deps\reshade\include\reshade_api.hpp">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="deps\reshade\include\reshade_api_device.hpp">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="deps\reshade\include\reshade_api_format.hpp">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="deps\reshade\include\reshade_api_pipeline.hpp">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="deps\reshade\include\reshade_api_resource.hpp">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="deps\reshade\include\reshade_events.hpp">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="deps\reshade\include\reshade_overlay.hpp">
-      <Filter>Headers</Filter>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="version.h">
-      <Filter>Resources</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClCompile Include="dllmain.cpp" />
-    <Text Include="LICENSE.txt" />
-    <ResourceCompile Include="resource.rc">
-      <Filter>Resources</Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="version.rc">
+      <Filter>Resource Files</Filter>
     </ResourceCompile>
-    <None Include="version.rc2">
-      <Filter>Resources</Filter>
-    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\deps\reshade\include\reshade.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\reshade\include\reshade_api.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\reshade\include\reshade_api_device.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\reshade\include\reshade_api_format.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\reshade\include\reshade_api_pipeline.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\reshade\include\reshade_api_resource.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\reshade\include\reshade_events.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\reshade\include\reshade_overlay.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deps\imgui\imgui.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
