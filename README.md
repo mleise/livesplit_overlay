@@ -21,7 +21,7 @@ To fix issues with fullscreen games that don't allow you to have LiveSplit layer
 
 ## How To Install It?
 
-Download ReShade ⚠️ _**with full add-on support**_ ⚠️ from its [Download section](https://reshade.me/#download). It will warn you that it is intended for single-player games only. During installation you will be asked to "Select add-ons to install". Look for the "LiveSplit Overlay by mleise" in the list. When you launch your game now, the LiveSplit window should be rendered into the top-left corner.
+Download ReShade ⚠️ _**with full add-on support**_ ⚠️ from its [Download section](https://reshade.me/#download). It will warn you that it is intended for single-player games only. During installation you will be asked to "Select add-ons to install". Look for the "LiveSplit Overlay" in the list. When you launch your game now, the LiveSplit window should be rendered into the top-left corner.
 
 You can also manually load the latest version of the add-on from the "Releases" panel to the right of this page. Just extract `livesplit_overlay.addon32` (for 32-bit games) and `livesplit_overlay.addon64` (for 64-bit games) to where the game's executable resides.
 
